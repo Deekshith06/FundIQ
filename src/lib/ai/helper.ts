@@ -1,9 +1,15 @@
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY || process.env.OPENROUTER_API_KEY,
-  baseURL: process.env.OPENAI_API_KEY ? undefined : 'https://openrouter.ai/api/v1',
-});
+const getOpenAIClient = () => {
+  try {
+    return new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY || process.env.OPENROUTER_API_KEY || 'dummy_key',
+      baseURL: process.env.OPENAI_API_KEY ? undefined : 'https://openrouter.ai/api/v1',
+    });
+  } catch (e) {
+    return null;
+  }
+};
 
 const MODEL = process.env.OPENAI_API_KEY ? 'gpt-4o' : (process.env.FINANCIAL_MODEL || 'openai/gpt-4o');
 
@@ -12,6 +18,9 @@ export async function generateSimulatedForecast(ticker: string): Promise<string>
     if (!process.env.OPENAI_API_KEY && !process.env.OPENROUTER_API_KEY) {
       throw new Error('No API key provided');
     }
+    const openai = getOpenAIClient();
+    if (!openai) throw new Error('Failed to initialize OpenAI client');
+    
     const response = await openai.chat.completions.create({
       model: MODEL,
       messages: [
