@@ -1,7 +1,38 @@
-# AI Investment Research Agent
+# 📈 FundIQ — AI Investment Research Agent
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Next.js 14](https://img.shields.io/badge/Next.js-14-black?logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React 18](https://img.shields.io/badge/React-18-61dafb?logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![LangChain.js](https://img.shields.io/badge/LangChain.js-Multi--Agent-blue.svg)](https://js.langchain.com/)
+[![OpenAI & Anthropic](https://img.shields.io/badge/AI%20Models-GPT--4o%20%7C%20Claude%203.5-green.svg)](https://openai.com/)
+
+**Author:** Seelaboyina Deekshith ([@Deekshith06](https://github.com/Deekshith06))
 
 ## Overview
 Enterprise-grade AI-powered investment research platform that analyzes public companies, verifies financial facts, and provides investment recommendations with transparent reasoning and evidence trails. Built with Next.js, LangChain.js, and OpenAI for comprehensive investment analysis.
+
+---
+
+## 📌 Multi-Agent System Architecture
+
+```mermaid
+flowchart TD
+    User([Investment Analyst / Fund Manager]) --> WebUI[Next.js 14 Responsive Dashboard]
+    WebUI --> LangChainCoordinator[LangChain.js Multi-Agent Orchestrator]
+
+    subgraph AutonomousAgents [Multi-Agent Financial Research Swarm]
+        LangChainCoordinator --> CompanyAgent["Company Research Agent (Web Scraping & 10-K Filings)"]
+        LangChainCoordinator --> FactVerifier["Financial Fact Verification Agent (Yahoo Finance & Alpha Vantage)"]
+        LangChainCoordinator --> ValuationAgent["Valuation & Metrics Engine (DCF, Multiples & Growth Models)"]
+        LangChainCoordinator --> RiskSynthesis["Recommendation & Risk Synthesis Agent"]
+    end
+
+    AutonomousAgents --> EvidenceLedger[Transparent Fact-Checked Thesis & Source Citations]
+    EvidenceLedger --> WebUI
+```
+
+---
 
 ## How to Run It
 
@@ -273,3 +304,11 @@ For questions or clarifications, refer to the project README and development doc
 - Build API endpoints
 - Add state management
 - Implement verification system
+
+---
+
+## 👤 Author
+
+**Seelaboyina Deekshith**
+- GitHub: [@Deekshith06](https://github.com/Deekshith06)
+- Repository: [FundIQ](https://github.com/Deekshith06/FundIQ)
